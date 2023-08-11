@@ -1,28 +1,72 @@
-let edades = [];
-
-function calcularPromedio(edades) {
-    if (edades.length === 0) {
-        return 0; 
+class Producto {
+    constructor(nombre, categoria, precio) {
+        this.nombre = nombre;
+        this.categoria = categoria;
+        this.precio = precio;
     }
-    let sumaEdades = edades.reduce((total, edad) => total + edad, 0);
-    return sumaEdades / edades.length;
 }
 
-function registrarEdad() {
-    let nombre = prompt("¿Cuál es tu nombre?");
-    let edad = prompt("¿Cuál es tu edad?");
-    edad = parseInt(edad); 
+const productos = [
+    new Producto("Laptop", "electronica", 800),
+    new Producto("Camiseta", "ropa", 20),
+    new Producto("Libro", "libros", 10),
+    new Producto("Teléfono", "electronica", 500),
+    new Producto("Pantalón", "ropa", 30),
+    new Producto("Tablet", "electronica", 300),
+];
 
-    if (edad && !isNaN(edad)) { 
-        alert("¡Muchas gracias! Queremos conocer a quienes están interesados en CS:GO :)");
-        edades.push(edad); 
+function mostrarProductos(listaProductos) {
+    const listaProductosElem = document.getElementById("lista-productos");
+    listaProductosElem.innerHTML = "";
+
+    listaProductos.forEach(producto => {
+        const li = document.createElement("li");
+        li.textContent = `${producto.nombre} - $${producto.precio}`;
+        listaProductosElem.appendChild(li);
+    });
+}
+
+function filtrarProductos(categoria) {
+    if (categoria === "todas") {
+        return productos;
     } else {
-        alert("Por favor, ingresa una edad válida.");
+        return productos.filter(producto => producto.categoria === categoria);
     }
-
-    let promedio = calcularPromedio(edades);
-    console.log("Edades registradas:", edades);
-    console.log("Edad promedio:", promedio);
 }
 
-registrarEdad();
+function ordenarProductos(arrayProductos, orden) {
+    const arrayOrdenado = arrayProductos.slice();
+
+    arrayOrdenado.sort((a, b) => {
+        if (orden === "asc") {
+            return a.precio - b.precio;
+        } else {
+            return b.precio - a.precio;
+        }
+    });
+
+    return arrayOrdenado;
+}
+
+function iniciar() {
+    const categoriaSelect = document.getElementById("categoria");
+    const ordenSelect = document.getElementById("orden");
+
+    categoriaSelect.addEventListener("change", () => {
+        const categoriaSeleccionada = categoriaSelect.value;
+        const productosFiltrados = filtrarProductos(categoriaSeleccionada);
+        const productosOrdenados = ordenarProductos(productosFiltrados, ordenSelect.value);
+        mostrarProductos(productosOrdenados);
+    });
+
+    ordenSelect.addEventListener("change", () => {
+        const categoriaSeleccionada = categoriaSelect.value;
+        const productosFiltrados = filtrarProductos(categoriaSeleccionada);
+        const productosOrdenados = ordenarProductos(productosFiltrados, ordenSelect.value);
+        mostrarProductos(productosOrdenados);
+    });
+
+    mostrarProductos(productos);
+}
+
+iniciar();
