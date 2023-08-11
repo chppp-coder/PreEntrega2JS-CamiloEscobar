@@ -7,11 +7,11 @@ class Producto {
 }
 
 const productos = [
-    new Producto("Laptop", "electronica", 800),
+    new Producto("Notebook", "electronica", 800),
     new Producto("Camiseta", "ropa", 20),
     new Producto("Libro", "libros", 10),
-    new Producto("Teléfono", "electronica", 500),
-    new Producto("Pantalón", "ropa", 30),
+    new Producto("Telefono", "electronica", 500),
+    new Producto("Pantalon", "ropa", 30),
     new Producto("Tablet", "electronica", 300),
 ];
 

@@ -1,29 +1,37 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
     <title>Simulador de Tienda</title>
 </head>
 <body>
     <h1>Simulador de Tienda en Linea</h1>
     
-    <label for="categoria">Filtrar por categoria:</label>
-    <select id="categoria">
-        <option value="todas">Todas</option>
-        <option value="electronica">Electronica</option>
-        <option value="ropa">Ropa</option>
-        <option value="libros">Libros</option>
-    </select>
-    
-    <label for="orden">Ordenar por precio:</label>
-    <select id="orden">
-        <option value="asc">Menor a Mayor</option>
-        <option value="desc">Mayor a Menor</option>
-    </select>
-    
+    <div class="centrar-contenido">
+        <div>
+            <label for="categoria">Filtrar por categoria:</label>
+                <select id="categoria">
+                    <option value="todas">Todas</option>
+                    <option value="electronica">Electronica</option>
+                    <option value="ropa">Ropa</option>
+                    <option value="libros">Libros</option>
+                </select>
+        </div>
+        <div>
+            <label for="orden">Ordenar por precio:</label>
+            <select id="orden">
+                <option value="asc">Menor a Mayor</option>
+                <option value="desc">Mayor a Menor</option>
+            </select>
+        </div>
+    </div>
+
     <ul id="lista-productos"></ul>
     
+
     <script src="main.js"></script>
 </body>
 </html>
